@@ -4,10 +4,10 @@ const CompanyLists = require("./../models/Companies");
 const EmployeeList = require("../models/Employees");
 
 router.get("/all", (req, res) => {
-  EmployeeList.find({}, (err, companies) => {
-    console.log(companies);
-    return res.send("companies");
-  });
+    EmployeeList.find({}, (err, employees) => {
+    
+        return res.render('./../views/pages/employees.ejs',{data:employees})
+      });
 });
 router.post('/test',(req,res)=>{
     console.log(req.body);
