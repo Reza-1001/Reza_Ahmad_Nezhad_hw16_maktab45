@@ -14,6 +14,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
+mongoose.set('useFindAndModify', false);
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());

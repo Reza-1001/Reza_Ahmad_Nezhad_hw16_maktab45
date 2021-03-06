@@ -69,7 +69,7 @@
       </div>
     </center>
     <br>
-    <% console.log(data[0]) %>
+   
     <%if(data.length>0){%>
         <center>
         <div style="width:auto; border-style: solid;border-color: black;">
@@ -81,7 +81,7 @@
                         <%= Object.keys(data[0].toJSON())[i] %>
                     </th>
                     <% } %>
-                    <th>
+                    <th class="edit_panel" style="display:none">
                       Edit
                     </th>
                 </tr>
@@ -91,31 +91,33 @@
             </thead>
             <tbody>
                 <%for(var i=0;i< data.length;i++){%>
-                <tr>
-                    <td id=<%= data[i].id %>>
+                <tr id=<%= data[i].id %>>
+                    <td >
                         <%= i %>
                     </td>
-                    <td id=<%= data[i].id %>>
+                    <td >
                      <%= data[i].name %>
                     </td>
-                    <td id=<%= data[i].id %>>
+                    <td >
                       <%=data[i].registrationNo %>
                     </td>
-                    <td id=<%= data[i].id %>>
+                    <td>
                         <%=data[i].city %>
                       </td>
-                      <td id=<%= data[i].id %>>
+                      <td >
+                      
                         <%=data[i].state %>
                       </td>
-                      <td id=<%= data[i].id %>>
+                      <td>
                         <%= data[i].registrationDate %>
                       </td>
-                      <td id=<%= data[i].id %>>
+                      <td>
                         <%= data[i].tel %>
                       </td>
-                      <td>
-                      <form action=`<%= "/companies/delete" %>` method="GET" >
+                      <td class="edit_panel" style="display:none">
+                        <form action="/companies/delete<%= data[i]._id %>" method="GET" >
                         <input type="submit" value="Delete">
+                        <input type="button" value="Edit" id="btn_edit">
                       </form>
                     </td>
                 </tr>
@@ -127,8 +129,7 @@
     <%}%>
 
     </div>
-       <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
       <script type="text/javascript" src="/js/main.js"></script> 
       </body>
