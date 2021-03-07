@@ -2,17 +2,31 @@ $("document").ready(function () {
   $("td").hover(function () {
     $(".edit_panel").css("display", "block");
   });
-  $("#btn_edit").click(function () {
-    var currentTD = $(this).parents("tr").find("td");
+  $(".btn_company_edit").click(function () {
+    EditDATA($(this))
+  });
+  $(".btn_employee_edit").click(function () {
+    EditDATA($(this))
+  });
+  function EditDATA(el){
+    let url;
+    var currentTD = el.parents("tr").find("td");
 
-    if ($(this).attr('id') == "btn_edit") {
+    if (el.val() == "Edit") {
       $.each(currentTD, function () {
         $(this).prop("contenteditable", true);
       });
     } else {
+        
+        if (el[0].className == "btn_company_edit")
+            url="http://localhost:5000/companies/update/"
+        else if(el[0].className == "btn_employee_edit")
+            url="http://localhost:5000/employees/update/"
+            console.log(url);
       $.each(currentTD, function () {
         $(this).prop("contenteditable", false);
       });
+      
       let headerList = [];
     let rowData = [];
     let data={};
@@ -21,21 +35,16 @@ $("document").ready(function () {
       rowData.push(currentTD[i].innerText);
       headerList.push($("thead").find("th")[i].innerText);
     }
-    console.log(headerList);
-    console.log(rowData);
-    console.log(data);
-    let id = $(this).parent().parent().parent().get(0).id;
+    let id = el.parent().parent().parent().get(0).id;
+    console.log(id);
     $.ajax({
-      url: `http://localhost:5000/companies/update/${id}`,
+      url: `${url}${id}`,
       method: "PUT",
       contentType: "application/json",
       dataType: "text",
       data: JSON.stringify(data),
     });
     }
-    $(this).val($(this).val() == "Edit" ? "Save" : "Edit");
-    $(this).attr('id',$(this).attr('id') == "btn_edit" ? "btn_save" : "btn_edit");
-  });
-    
-  
+    el.val(el.val() == "Edit" ? "Save" : "Edit");
+  }
 });

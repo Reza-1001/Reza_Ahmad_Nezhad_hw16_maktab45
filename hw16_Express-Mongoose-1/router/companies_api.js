@@ -32,25 +32,17 @@ router.post('/create',function(req, res) {
     res.redirect(301, '/companies/all');
   })
   router.put("/update/:id", (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body);
+
   CompanyLists.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, user) => {
         if (err) return res.status(500).send("Somthing went wrong in update user! \n" + err);
         res.redirect(301, '/companies/all');
-        return
+        
     })
 });
 
 
   function Create(req){
-    const NEW_COMPANY = new CompanyLists({
-      name: req.body.name,
-      registrationNo: req.body.registrationNo,
-      city: req.body.city,
-      state: req.body.state,
-      registrationDate: req.body.registrationDate,
-      tel: req.body.tel,
-  })
+    const NEW_COMPANY = new CompanyLists(req.body)
 console.log(NEW_COMPANY);
   NEW_COMPANY.save(function(err, company) {        
       if (err) return res.status(500).send("Somthing went wrong in add company \n!" + err);

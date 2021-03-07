@@ -19,7 +19,7 @@ const employeeSchema = new Schema({
   manager: {
     type: String,
     required:true,
-    enum: ['true', 'false']
+    enum: ['Yes', 'No']
   },
   dateOfBirth: {
     type: Date,
