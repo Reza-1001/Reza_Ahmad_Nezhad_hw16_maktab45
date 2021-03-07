@@ -15,6 +15,7 @@ $("document").ready(function () {
     if (el.val() == "Edit") {
       $.each(currentTD, function () {
         $(this).prop("contenteditable", true);
+        $(this).toggleClass("bg-dark")
       });
     } else {
         
@@ -25,6 +26,7 @@ $("document").ready(function () {
             console.log(url);
       $.each(currentTD, function () {
         $(this).prop("contenteditable", false);
+        $(this).toggleClass("bg-dark")
       });
       
       let headerList = [];

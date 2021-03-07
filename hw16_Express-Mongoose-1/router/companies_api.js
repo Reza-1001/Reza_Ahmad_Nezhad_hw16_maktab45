@@ -24,7 +24,7 @@ router.post('/create',function(req, res) {
   });
 
   router.get('/delete:id',(req,res)=>{
-    console.log(req);
+    console.log(req.params.id);
     CompanyLists.findByIdAndDelete(req.params.id, function(err, obj) {
       if (err) throw err;
       console.log("1 document deleted");
