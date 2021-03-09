@@ -53,8 +53,8 @@ router.post('/create',function(req, res) {
         res.redirect(301, '/companies/all');
     })
 });
-router.put("/update/cityname", (req, res) => {
-  CompanyLists.updateMany({},{ $set: {city: "Tehn", state: "tean" } }, {new: true}, (err, user) => {
+router.get("/update/cityname", (req, res) => {
+  CompanyLists.updateMany({},{ $set: {city: "Tehran", state: "Tehran" } }, {new: true}, (err, user) => {
         if (err) return res.status(500).send("Somthing went wrong in update user! \n" + err);
         res.redirect(301, '/companies/all');
     })
