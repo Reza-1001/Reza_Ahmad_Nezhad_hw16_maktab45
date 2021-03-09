@@ -7,11 +7,19 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.get("/all", (req, res) => {
     EmployeeList.find({}, (err, employees) => {
-    
         return res.render('./../views/pages/employees.ejs',{data:employees})
       });
 });
-
+router.get("/all/manager", (req, res) => {
+  EmployeeList.find({"manager":{$eq:"Yes"}}, (err, employees) => {
+      return res.render('./../views/pages/employees.ejs',{data:employees})
+    });
+});
+router.get("/all/agelimit", (req, res) => {
+  EmployeeList.find({"age":{$gt:20},"age":{$lt: 30}}, (err, employees) => {
+      return res.render('./../views/pages/employees.ejs',{data:employees})
+    });
+});
 router.put("/create", function(req, res) {
   Create2(req)
   res.redirect(301, '/employees/all');
